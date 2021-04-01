@@ -126,6 +126,9 @@ class DOMHTMLTopIndian250Parser(DOMHTMLTop250Parser):
     """A parser for the "Top Rated Indian Movies" page."""
     ranktext = 'top indian 250 rank'
 
+class DOMHTMLTop50AnimationParser(DOMHTMLTop250Parser):
+    ranktext = 'top 50 animation rank'
+
 
 _OBJECTS = {
     'top250_parser': ((DOMHTMLTop250Parser,), None),
@@ -133,5 +136,7 @@ _OBJECTS = {
     'moviemeter100_parser': ((DOMHTMLMoviemeter100Parser,), None),
     'toptv250_parser': ((DOMHTMLTVTop250Parser,), None),
     'tvmeter100_parser': ((DOMHTMLTVmeter100Parser,), None),
-    'topindian250_parser': ((DOMHTMLTopIndian250Parser,), None)
+    'topindian250_parser': ((DOMHTMLTopIndian250Parser,), None),
+    'topanimation50_parser': ((DOMHTMLTop50AnimationParser,), None)
+
 }

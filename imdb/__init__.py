@@ -303,6 +303,8 @@ class IMDbBase:
         imdbURL_toptv250 = imdbURL_base + 'chart/toptv'
         # https://www.imdb.com/india/top-rated-indian-movies
         imdbURL_topindian250 = imdbURL_base + 'india/top-rated-indian-movies'
+        # https://www.imdb.com/search/title/?genres=animation&sort=user_rating,desc&title_type=feature&num_votes=25000,&pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=5aab685f-35eb-40f3-95f7-c53f09d542c3&pf_rd_r=CDFWZF3Z5ZXABRKD6WYH&pf_rd_s=right-6&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_gnr_3
+        imdbURL_topanimation50 = imdbURL_base + 'search/title/?genres=animation&sort=user_rating,desc&title_type=feature&num_votes=25000,&pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=5aab685f-35eb-40f3-95f7-c53f09d542c3&pf_rd_r=CDFWZF3Z5ZXABRKD6WYH&pf_rd_s=right-6&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_gnr_3'
         # http://www.imdb.com/find?%s
         imdbURL_find = imdbURL_base + 'find?%s'
         # http://www.imdb.com/search/title?%s
@@ -325,6 +327,7 @@ class IMDbBase:
             tvmeter100=imdbURL_tvmeter100,
             toptv250=imdbURL_toptv250,
             topindian250=imdbURL_topindian250,
+            topanimation50=imdbURL_topanimation50,
             find=imdbURL_find,
             movie_list=imdbURL_list_base,
             search_movie_advanced=imdbURL_search_movie_advanced)
@@ -694,6 +697,12 @@ class IMDbBase:
     def get_top250_indian_movies(self):
         """Return the list of the top 250 indian movies."""
         res = self._get_top_bottom_movies('topindian250')
+        return [Movie.Movie(movieID=self._get_real_movieID(mi),
+                data=md, modFunct=self._defModFunct,
+                accessSystem=self.accessSystem) for mi, md in res]
+
+    def get_top50_animation_movies(self):
+        res = self._get_top_bottom_movies('topanimation50')
         return [Movie.Movie(movieID=self._get_real_movieID(mi),
                 data=md, modFunct=self._defModFunct,
                 accessSystem=self.accessSystem) for mi, md in res]
